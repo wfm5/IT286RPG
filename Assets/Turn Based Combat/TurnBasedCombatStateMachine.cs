@@ -5,7 +5,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 
     public BattleStateStart battleStateStartScript = new BattleStateStart();
     private StatCalc statCalcScript = new StatCalc();
-
+    public static PlayerParty playerParty = new PlayerParty();
     public static BattleStates currentState;
     private BattleNumber currentBattleNumber;
     

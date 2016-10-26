@@ -12,6 +12,9 @@ public class BaseMageClass : BaseCharacterClass {
         Magicdefense = 5;
         Tech = 0;
         Mana = 150;
+        ability1 = new NormalAttack();
+        ability2 = new Swipe();
+        ability3 = new Doping();
     }
 
 }
