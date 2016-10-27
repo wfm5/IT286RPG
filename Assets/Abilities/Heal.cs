@@ -5,7 +5,7 @@ public class Heal : BaseAbility {
     {
         AbilityName = "Heal";
         isMagic = true;
-        multiplier = 2;
+        multiplier = .5f;
         TargetCount = 1;
         AbilityCost = 25;
     }

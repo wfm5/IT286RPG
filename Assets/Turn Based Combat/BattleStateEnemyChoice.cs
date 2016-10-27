@@ -5,10 +5,15 @@ public class BattleStateEnemyChoice{
 
 	public void EnemyAction(BaseCharacterClass Enemy1,BaseCharacterClass Enemy2)
     {
+        //who are we using for battle 1
+        Debug.Log(Enemy1.CharacterClassName + " is about to attack.");
+        Debug.Log(Enemy2.CharacterClassName + " is about to attack.");
+
         //ability
-        if(Enemy1.Health>0)
+        if (Enemy1.Health>0)
         {
             ChooseMeleeEnemyAbility(Enemy1);
+           // Debug.Log(Enemy1.ability2.abilityName);
         }
         if (Enemy2.Health > 0)
         {
@@ -16,18 +21,22 @@ public class BattleStateEnemyChoice{
         }
         //damage
         //end
+        if(Enemy1.Health + Enemy2.Health == 0)
+        {
+            TurnBasedCombatStateMachine.currentState = TurnBasedCombatStateMachine.BattleStates.WIN;
+        }
     }
-    public void EnemyAction(BaseCharacterClass Enemy1, BaseCharacterClass Enemy2, BaseCharacterClass Enemy3)
+    private void EnemyAction(BaseCharacterClass Enemy1, BaseCharacterClass Enemy2, BaseCharacterClass Enemy3)
     {
         //ability
         //damage
         //end
     }
-    public BaseAbility ChooseMeleeEnemyAbility(BaseCharacterClass enemy)
+    private BaseAbility ChooseMeleeEnemyAbility(BaseCharacterClass enemy)
     {
         return enemy.ability1;
     }
-    public BaseAbility ChooseHealerEnemyAbility(BaseCharacterClass enemy)
+    private BaseAbility ChooseHealerEnemyAbility(BaseCharacterClass enemy)
     {
         return enemy.ability2;
     }

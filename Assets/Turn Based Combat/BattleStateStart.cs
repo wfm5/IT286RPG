@@ -3,10 +3,13 @@ using System.Collections;
 
 public class BattleStateStart
 {
+    //prep room for enemies
+    public BattleStateEnemyChoice enemyChoiceScript = new BattleStateEnemyChoice();
+
     //object needed for stat calc
-    BaseCharacterClass Enemy1 = new BaseCharacterClass();
-    BaseCharacterClass Enemy2 = new BaseCharacterClass();
-    BaseCharacterClass Enemy3 = new BaseCharacterClass();
+    public static BaseCharacterClass Enemy1 = new BaseCharacterClass();
+    public static BaseCharacterClass Enemy3 = new BaseCharacterClass();
+    public static BaseCharacterClass Enemy2 = new BaseCharacterClass();
 
     private int WarriorHealth;
     private int WarriorTch;

@@ -10,8 +10,9 @@ public class BaseMeleeClass : BaseCharacterClass {
         Magicattack = 0;
         Defense = 5;
         Magicdefense = 8;
-        Tech = 100;
-        Mana = 0;
+        CurrentTech = 100;
+        MaxTech = 100;
+        MaxMana = 0;
         ability1 = new NormalAttack();
         ability2 = new Swipe();
         ability3 = new Doping();

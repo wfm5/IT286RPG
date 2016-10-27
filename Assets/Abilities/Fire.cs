@@ -7,7 +7,7 @@ public class Fire : BaseAbility {
     {
         abilityName = "Fire";
         isMagic = true;
-        multiplier = 1;
+        multiplier = .75f;
         TargetCount = 1;
         AbilityCost = 30;
     }

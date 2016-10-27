@@ -5,7 +5,7 @@ public class Swipe : BaseAbility {
     {
         AbilityName = "Swipe";
         isMagic = false;
-        multiplier = 2;
+        multiplier = .5f;
         TargetCount = 3;
         AbilityCost = 30;
     }

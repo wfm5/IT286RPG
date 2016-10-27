@@ -3,7 +3,7 @@ public class BaseAbility {
 
     public string abilityName;
     public bool isMagic;
-    public int multiplier;
+    public float multiplier;
     public int targetCount;
     public int abilityCost;
 

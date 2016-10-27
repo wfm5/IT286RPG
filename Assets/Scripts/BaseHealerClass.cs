@@ -12,8 +12,9 @@ public class BaseHealerClass : BaseCharacterClass {
         Magicattack = 20;
         Defense = 5;
         Magicdefense = 8;
-        Tech = 0;
-        Mana = 250;
+        MaxTech = 0;
+        CurrentMana = 250;
+        MaxMana = 250;
         ability1 = new NormalAttack();
         ability2 = new Heal();
         //ability3 = new Sap();
