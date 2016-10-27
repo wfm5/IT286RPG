@@ -5,6 +5,7 @@ public class BaseMeleeClass : BaseCharacterClass {
     public BaseMeleeClass() {
         CharacterClassName = "Warrior";
         Health = 50;
+        MaxHealth = 50;
         Attack = 20;
         Magicattack = 0;
         Defense = 5;

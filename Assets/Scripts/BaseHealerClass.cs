@@ -7,6 +7,7 @@ public class BaseHealerClass : BaseCharacterClass {
     {
         CharacterClassName = "Healer";
         Health = 20;
+        MaxHealth = 20;
         Attack = 5;
         Magicattack = 20;
         Defense = 5;

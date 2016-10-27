@@ -3,9 +3,13 @@ using System.Collections;
 
 public class TurnBasedCombatStateMachine : MonoBehaviour {
 
-    public BattleStateStart battleStateStartScript = new BattleStateStart();
-    private StatCalc statCalcScript = new StatCalc();
-    public static PlayerParty playerParty = new PlayerParty();
+    private BattleCalculations battleCalcScript = new BattleCalculations();
+    private BattleStateEnemyChoice enemyChoiceScript = new BattleStateEnemyChoice();
+    public BattleStateStart battleStateStartScript = new BattleStateStart();  
+    public static PlayerParty playerParty = new PlayerParty();    
+    public static BaseAbility[] usedAbilities = new BaseAbility[3];
+    public static int turnCount;
+
     public static BattleStates currentState;
     private BattleNumber currentBattleNumber;
     
@@ -16,6 +20,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         PLAYERANIMATE,
         ENEMYCHOICE,
         CALCDAMAGE,
+        ENDTURN,
         LOSE,
         WIN
     }
@@ -30,6 +35,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 	void Start () {
         currentState = BattleStates.START;
         currentBattleNumber = BattleNumber.ONE;
+        turnCount = 1;
 	}
 
 	void Update () {
@@ -48,14 +54,17 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     battleStateStartScript.PrepareBattle3();
                 break;
             case (BattleStates.PLAYERCHOICE):
-                //Debug.Log()
-                
+                //Debug.Log()                
                 break;
             case (BattleStates.ENEMYCHOICE):
+                enemyChoiceScript.EnemyAction(BattleStateStart.);
                 break;
             case (BattleStates.CALCDAMAGE):
-                
+                battleCalcScript.CalculatePlayerForTurn(usedAbilities[0], usedAbilities[1], usedAbilities[2]);
             break;
+            case (BattleStates.ENDTURN):
+                turnCount++;
+                break;
             case (BattleStates.LOSE):
                 break;
             case (BattleStates.WIN):

@@ -8,6 +8,12 @@ public class BattleStateStart
     BaseCharacterClass Enemy2 = new BaseCharacterClass();
     BaseCharacterClass Enemy3 = new BaseCharacterClass();
 
+    private int WarriorHealth;
+    private int WarriorTch;
+    private int MageHealth;
+    private int MageMana;
+    private int HealerHealth;
+    private int HealerMana;
     //Prepare Battle functions
     public void PrepareBattle1()
     {
@@ -16,12 +22,14 @@ public class BattleStateStart
         Enemy2 = CreateMeleeEnemy();
         //apply buffs or specs here
         Enemy1.CharacterClassName = "Swiper1";
+        Enemy2.CharacterClassName = "Swiper2";
         //Who's turn?
         TurnBasedCombatStateMachine.currentState = TurnBasedCombatStateMachine.BattleStates.PLAYERCHOICE;
 
     }
     public void PrepareBattle2()
     {
+        TurnBasedCombatStateMachine.turnCount = 1;
         //create enemy
         Enemy1 = CreateMeleeEnemy();
         Enemy2 = CreateMageEnemy();
@@ -33,6 +41,7 @@ public class BattleStateStart
     }
     public void PrepareBattle3()
     {
+        TurnBasedCombatStateMachine.turnCount = 1;
         //create enemy
         Enemy1 = CreateMeleeEnemy();
         Enemy2 = CreateHealerEnemy();
@@ -63,6 +72,7 @@ public class BattleStateStart
     //Stat functions feed vitals to game
     private void PlayerStatus()
     {
-
+        //do i need this?
+        //PlayerParty.Warrior.Health;
     }
 }

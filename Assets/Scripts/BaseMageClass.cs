@@ -6,6 +6,7 @@ public class BaseMageClass : BaseCharacterClass {
     {
         CharacterClassName = "Mage";
         Health = 25;
+        MaxHealth = 25;
         Attack = 2;
         Magicattack = 40;
         Defense = 2;

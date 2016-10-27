@@ -21,10 +21,6 @@ public class StatCalc : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(TurnBasedCombatStateMachine.BattleStates.CALCDAMAGE > 0)
-        {
-
-        }
         
 	}
     public int CalculateHp(int statValue)
