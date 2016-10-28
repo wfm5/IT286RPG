@@ -3,6 +3,8 @@ public class BaseAbility {
 
     public string abilityName;
     public bool isMagic;
+    public bool isHostile;
+    public bool isAoe;
     public float multiplier;
     public int targetCount;
     public int abilityCost;
@@ -16,6 +18,16 @@ public class BaseAbility {
     {
         get { return isMagic; }
         set { isMagic = value; }
+    }
+    public bool IsHostile
+    {
+        get { return isHostile; }
+        set { isHostile = value; }
+    }
+    public bool IsAoe
+    {
+        get { return isAoe; }
+        set { isAoe = value; }
     }
     public int TargetCount
     {

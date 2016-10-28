@@ -43,6 +43,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 	void Update () {
         
         Debug.Log(currentState);
+        CheckHealth(); //cannot let hp go over max
         //Debug.Log(currentBattleNumber);
         switch (currentState)
         {
@@ -56,33 +57,88 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     battleStateStartScript.PrepareBattle3();
                 break;
             case (BattleStates.PLAYERCHOICE):
-                //Debug.Log()                
                 break;
             case (BattleStates.ENEMYCHOICE):
-                battleStateStartScript.enemyChoiceScript.EnemyAction(BattleStateStart.Enemy1, BattleStateStart.Enemy2);
+                if(currentBattleNumber == BattleNumber.ONE)
+                    battleStateStartScript.enemyChoiceScript.EnemyAction(BattleStateStart.Enemy1, BattleStateStart.Enemy2);
                 break;
             case (BattleStates.CALCDAMAGE):
                 //playerdamage
                 battleCalcScript.CalculatePlayerForTurn(usedAbilities[0], usedAbilities[1], usedAbilities[2]);
                 //enemy damage
-
-            break;
+                break;
             case (BattleStates.ENDTURN):
+                //count buffs
                 turnCount++;
+                PlayerParty.Warrior.CurrentTech += 10;
+                CheckBuffs();
+                currentState = BattleStates.PLAYERCHOICE;
                 break;
             case (BattleStates.LOSE):
+                Debug.Log("You lose.....");
                 break;
             case (BattleStates.WIN):
+                Debug.Log("You won.....");
                 break;
         }
 	}
+    private void CheckHealth()
+    {        
+        if (PlayerParty.Warrior.Health > PlayerParty.Warrior.MaxHealth)
+            PlayerParty.Warrior.Health = PlayerParty.Warrior.MaxHealth;
+        if (PlayerParty.Mage.Health > PlayerParty.Mage.MaxHealth)
+            PlayerParty.Mage.Health = PlayerParty.Mage.MaxHealth;
+        if (PlayerParty.Healer.Health > PlayerParty.Healer.MaxHealth)
+            PlayerParty.Healer.Health = PlayerParty.Healer.MaxHealth;
+        if (PlayerParty.Healer.CurrentMana > PlayerParty.Healer.MaxMana)
+            PlayerParty.Healer.CurrentMana = PlayerParty.Healer.MaxMana;
+        if (PlayerParty.Warrior.CurrentTech > PlayerParty.Warrior.MaxTech)
+            PlayerParty.Warrior.CurrentTech = PlayerParty.Warrior.MaxTech;
+        
+        if (PlayerParty.Warrior.Health < 0f)
+            PlayerParty.Warrior.Health = 0f;
+        if (PlayerParty.Mage.Health < 0f)
+            PlayerParty.Mage.Health = 0f;
+        if (PlayerParty.Healer.Health < 0f)
+            PlayerParty.Healer.Health = 0f;
+        if (PlayerParty.Warrior.CurrentTech < 0f)
+            PlayerParty.Warrior.CurrentTech = 0f;
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(1,100, 90, 30), "NEXT STATE"))
-        {
-            if (currentState == BattleStates.START)
-                currentState = BattleStates.PLAYERCHOICE;
-        }
+        if (BattleStateStart.Enemy1.Health > BattleStateStart.Enemy1.MaxHealth)
+            BattleStateStart.Enemy1.Health = BattleStateStart.Enemy1.MaxHealth;
+        if (BattleStateStart.Enemy2.Health > BattleStateStart.Enemy2.MaxHealth)
+            BattleStateStart.Enemy2.Health = BattleStateStart.Enemy2.MaxHealth;
+        if (BattleStateStart.Enemy3.Health > BattleStateStart.Enemy3.MaxHealth)
+            BattleStateStart.Enemy3.Health = BattleStateStart.Enemy3.MaxHealth;
+
+        if (BattleStateStart.Enemy1.Health < 0f)
+            BattleStateStart.Enemy1.Health = 0f;
+        if (BattleStateStart.Enemy2.Health < 0f)
+            BattleStateStart.Enemy2.Health = 0f;
+        if (BattleStateStart.Enemy3.Health < 0f)
+            BattleStateStart.Enemy3.Health = 0f;
+
+
     }
+    private void CheckBuffs()
+    {
+        //decrement buffs
+        if (PlayerParty.Warrior.Buffed > 0) //Doping counter
+            PlayerParty.Warrior.Buffed--;
+        //DivineLight counters
+        if (PlayerParty.Warrior.BuffedH > 0)
+            PlayerParty.Warrior.BuffedH--;
+
+        if (PlayerParty.Mage.BuffedH > 0)
+            PlayerParty.Mage.BuffedH--;
+
+        if (PlayerParty.Healer.BuffedH > 0)
+            PlayerParty.Healer.BuffedH--;
+        //if 0 take em off
+        if (PlayerParty.Warrior.Buffed == 0) //doping off
+            Doping.RemoveDoping(PlayerParty.Warrior);
+
+        if (PlayerParty.Warrior.BuffedH == 0) //all divine lights come off together
+            DivineLight.RemoveDivineLight(PlayerParty.Warrior, PlayerParty.Mage, PlayerParty.Healer);
+    }    
 }

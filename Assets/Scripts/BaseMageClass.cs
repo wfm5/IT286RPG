@@ -16,7 +16,8 @@ public class BaseMageClass : BaseCharacterClass {
         MaxMana = 150;
         ability1 = new NormalAttack();
         ability2 = new Fire();
-        ability3 = new Doping();
+        ability3 = new Ice();
+        ability4 = new NullAttack();
     }
 
 }

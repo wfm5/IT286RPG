@@ -5,8 +5,10 @@ public class Fire : BaseAbility {
 
     public Fire()
     {
-        abilityName = "Fire";
+        AbilityName = "Fire";
         isMagic = true;
+        IsHostile = true;
+        IsAoe = false;
         multiplier = .75f;
         TargetCount = 1;
         AbilityCost = 30;

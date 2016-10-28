@@ -17,8 +17,8 @@ public class BaseHealerClass : BaseCharacterClass {
         MaxMana = 250;
         ability1 = new NormalAttack();
         ability2 = new Heal();
-        //ability3 = new Sap();
-        //ability4 = new DivineLight();
-        //ability5 = Salvation();
+        ability3 = new Sap();
+        ability4 = new DivineLight();
+        ability5 = new Salvation();
     }
 }

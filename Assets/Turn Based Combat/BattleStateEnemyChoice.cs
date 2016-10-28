@@ -7,34 +7,46 @@ public class BattleStateEnemyChoice{
     {
         //who are we using for battle 1
         Debug.Log(Enemy1.CharacterClassName + " is about to attack.");
-        Debug.Log(Enemy2.CharacterClassName + " is about to attack.");
+        //Debug.Log(Enemy2.CharacterClassName + " is about to attack.");
 
-        //ability
-        if (Enemy1.Health>0)
+        //use ability also check for death
+        if (Enemy1.Health > 0)
         {
-            ChooseMeleeEnemyAbility(Enemy1);
+            UseMeleeEnemyAbility(Enemy1);
            // Debug.Log(Enemy1.ability2.abilityName);
         }
         if (Enemy2.Health > 0)
         {
-            ChooseMeleeEnemyAbility(Enemy2);
+            UseMeleeEnemyAbility(Enemy2);
         }
-        //damage
-        //end
-        if(Enemy1.Health + Enemy2.Health == 0)
+        //check for win
+        if (Enemy1.Health <= 0f && Enemy2.Health <= 0f)
         {
             TurnBasedCombatStateMachine.currentState = TurnBasedCombatStateMachine.BattleStates.WIN;
+        }else if (PlayerParty.Warrior.Health <= 0f && PlayerParty.Mage.Health <= 0f && PlayerParty.Healer.Health <= 0f)
+        {
+            TurnBasedCombatStateMachine.currentState = TurnBasedCombatStateMachine.BattleStates.LOSE;
+        }
+        else
+        {
+            //change state
+            TurnBasedCombatStateMachine.currentState = TurnBasedCombatStateMachine.BattleStates.ENDTURN;
         }
     }
+    //battle 2
     private void EnemyAction(BaseCharacterClass Enemy1, BaseCharacterClass Enemy2, BaseCharacterClass Enemy3)
     {
         //ability
         //damage
         //end
     }
-    private BaseAbility ChooseMeleeEnemyAbility(BaseCharacterClass enemy)
+    private void UseMeleeEnemyAbility(BaseCharacterClass enemy)
     {
-        return enemy.ability1;
+        //uses swipe
+        PlayerParty.Warrior.Health -= ((enemy.Attack*enemy.ability2.multiplier) - PlayerParty.Warrior.Defense);
+        PlayerParty.Mage.Health -= ((enemy.Attack * enemy.ability2.multiplier) - PlayerParty.Mage.Defense);
+        PlayerParty.Healer.Health -= ((enemy.Attack * enemy.ability2.multiplier) - PlayerParty.Healer.Defense);
+
     }
     private BaseAbility ChooseHealerEnemyAbility(BaseCharacterClass enemy)
     {
