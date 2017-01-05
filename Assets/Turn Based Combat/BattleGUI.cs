@@ -52,7 +52,7 @@ public class BattleGUI : MonoBehaviour {
         mageText = PlayerParty.Mage.CharacterClassName + "\n HP: " + PlayerParty.Mage.Health + "/" + PlayerParty.Mage.MaxHealth + "\n MP: " + PlayerParty.Mage.CurrentMana + "/" + PlayerParty.Mage.MaxMana + "\n\n\n\n\n\n\n\n";
         healerText = PlayerParty.Healer.CharacterClassName + "\n HP: " + PlayerParty.Healer.Health + "/" + PlayerParty.Healer.MaxHealth + "\n MP: " + PlayerParty.Healer.CurrentMana + "/" + PlayerParty.Healer.MaxMana + "\n";
 
-        partyText.text = "" + warriorText + mageText + healerText;
+        partyText.text = "" + warriorText + mageText + healerText + "\n Press Esc to close.";
         //Update Enemy info every frame
         enemyText1 = BattleStateStart.Enemy1.CharacterClassName + "\n HP: " + BattleStateStart.Enemy1.Health + "/" + BattleStateStart.Enemy1.MaxHealth + "\n";
         enemyText2 = BattleStateStart.Enemy2.CharacterClassName + "\n HP: " + BattleStateStart.Enemy2.Health + "/" + BattleStateStart.Enemy2.MaxHealth + "\n";
@@ -60,6 +60,8 @@ public class BattleGUI : MonoBehaviour {
            enemyText3 = BattleStateStart.Enemy3.CharacterClassName + "\n HP: " + BattleStateStart.Enemy3.Health + "/" + BattleStateStart.Enemy3.MaxHealth + "\n";
 
         enemyText.text = "" + enemyText1 + enemyText2 + enemyText3;
+       
+            
 	}
     void OnGUI()
     {

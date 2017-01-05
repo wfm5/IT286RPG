@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class Death : MonoBehaviour {
-    GameObject move;
+   // GameObject move;
     
 	// Use this for initialization
 	void Start () {
-        move = GameObject.Find("Swiper1");
+       // move = GameObject.Find("Swiper1");
 
 	}
 	

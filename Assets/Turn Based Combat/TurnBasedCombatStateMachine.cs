@@ -45,9 +45,11 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
         Debug.Log(currentState);
         CheckHealth(); //cannot let hp go over max
         //Debug.Log(currentBattleNumber);
+        if (Input.GetKey("escape"))
+            Application.Quit();
         switch (currentState)
         {
-            case (BattleStates.START) :
+             case (BattleStates.START) :
                 //SETUP BATTLE FUNCTIONS
                 if(currentBattleNumber == BattleNumber.ONE)
                     battleStateStartScript.PrepareBattle1();
@@ -84,6 +86,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
 	}
     private void CheckHealth()
     {        
+        //replace with for loops....
         if (PlayerParty.Warrior.Health > PlayerParty.Warrior.MaxHealth)
             PlayerParty.Warrior.Health = PlayerParty.Warrior.MaxHealth;
         if (PlayerParty.Mage.Health > PlayerParty.Mage.MaxHealth)

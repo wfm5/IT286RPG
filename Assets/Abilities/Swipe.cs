@@ -9,6 +9,6 @@ public class Swipe : BaseAbility {
         IsAoe = true;
         multiplier = .5f;
         TargetCount = 3;
-        AbilityCost = 30;
+        AbilityCost = 50;
     }
 }
