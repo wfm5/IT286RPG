@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class BattleStateEnemyChoice{
+public class BattleStateEnemyChoice{        
 
 	public void EnemyAction(BaseCharacterClass Enemy1,BaseCharacterClass Enemy2)
-    {
-        //who are we using for battle 1
-        Debug.Log(Enemy1.CharacterClassName + " is about to attack.");
-        //Debug.Log(Enemy2.CharacterClassName + " is about to attack.");
-
+    {  
         //use ability also check for death
         if (Enemy1.Health > 0)
         {
@@ -42,11 +39,13 @@ public class BattleStateEnemyChoice{
     }
     private void UseMeleeEnemyAbility(BaseCharacterClass enemy)
     {
-        //uses swipe
+        //uses swipe(?)
         PlayerParty.Warrior.Health -= ((enemy.Attack*enemy.ability2.multiplier) - PlayerParty.Warrior.Defense);
         PlayerParty.Mage.Health -= ((enemy.Attack * enemy.ability2.multiplier) - PlayerParty.Mage.Defense);
         PlayerParty.Healer.Health -= ((enemy.Attack * enemy.ability2.multiplier) - PlayerParty.Healer.Defense);
 
+        BattleGUI.battleText.text += enemy.CharacterClassName + " used "+ enemy.ability2.AbilityName +".\n"; 
+        
     }
     private BaseAbility ChooseHealerEnemyAbility(BaseCharacterClass enemy)
     {

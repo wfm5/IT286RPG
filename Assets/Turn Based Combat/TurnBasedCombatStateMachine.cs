@@ -57,6 +57,7 @@ public class TurnBasedCombatStateMachine : MonoBehaviour {
                     battleStateStartScript.PrepareBattle2();
                 else if(currentBattleNumber == BattleNumber.THREE)
                     battleStateStartScript.PrepareBattle3();
+                turnCount = 1;
                 break;
             case (BattleStates.PLAYERCHOICE):
                 break;

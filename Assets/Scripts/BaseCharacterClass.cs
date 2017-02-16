@@ -17,8 +17,8 @@ public class BaseCharacterClass  {
     private float mana;
     private int buffed; //countdown -> if buffed > 0 apply stat boosts
     private int buffedH; // healerbuff
-    private bool isDoping;
-    private bool isDivLit;
+    private bool isDoping = false;
+    private bool isDivLit = false;
     public BaseAbility ability1;
     public BaseAbility ability2;
     public BaseAbility ability3;
